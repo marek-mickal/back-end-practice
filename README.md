@@ -1,26 +1,27 @@
 # ProductCatalogApi
 
 ## Part 1
+**NOTICE: This part of readme does not have to be exact after commint "last commit part 1". After that commit some things may not be valid (ie. ProductsService interacts with DB)**
 ### Project Setup
 You can clone the repo, but bellow its describe how the project was originally set up.
 
-Create the project, use the following command:
+**Create the project, use the following command:**
 ```bash
 dotnet new webapi -n ProductCatalogApi
 ```
 
-Add .gitignore:
+**Add .gitignore:**
 ```bash
 dotnet gitignore
 ```
-Add Entity Framework Core Packages
+**Add Entity Framework Core Packages:**
 ```shell
 dotnet add package Microsoft.EntityFrameworkCore
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add package Microsoft.EntityFrameworkCore.Tools
 dotnet add package Microsoft.EntityFrameworkCore.Design 
-Setup Connection String
 ```
+**Setup Connection String:**
 
 In the appsettings.json file, configure the connection string in example: (Note: Setting TrustServerCertificate=True is only for development environments.)
 
@@ -42,23 +43,23 @@ In the appsettings.json file, configure the connection string in example: (Note:
 In this initial implementation, the service layer directly interacts with the database context. In part 2, this will be refactored to use a repository pattern to improve separation of concerns and code organization.
 
 ### Prepare DB
-After creating the Models you can set up Db migration by:
+After creating the Models you can **set up Db migration by:**
 ```shell
 dotnet ef migrations add InitialCreate
 ```
 
-And apply the migration to the Db by:
+**And apply the migration to the Db by:**
 ```shell
 dotnet ef database update
 ```
 
 ### API
-Now you can run the app by:
+Now you can **run the app by:**
 ```shell
 dotnet run
 ```
 
-The API provides the following endpoints for managing the product catalog:
+**The API provides the following endpoints for managing the product catalog:**
 
 - GET /productCatalogApi/Products - Retrieve a list of all products.
 - GET /productCatalogApi/Products/{id} - Retrieve a product by its ID.
