@@ -1,6 +1,7 @@
-using ProductCatalogApi.Data;
-using Microsoft.EntityFrameworkCore;
 using ProductCatalogApi.Services;
+using ProductCatalogApi.Data;
+using ProductCatalogApi.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProductCatalogApi
 {
@@ -20,6 +21,8 @@ namespace ProductCatalogApi
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddScoped<ProductsService>();
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
 
             var app = builder.Build();
 
