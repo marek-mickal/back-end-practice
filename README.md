@@ -68,3 +68,23 @@ dotnet run
 - DELETE /productCatalogApi/Products/{id} - Delete a product by its ID.
 
 ## Part 2
+### Overview
+In this task, I refactored the project to implement the repository pattern and dependency injection, separating data access logic from the business logic and API controllers. Because I've decided to use service to separate the logic from the http management directed by controller I injected the repository into the service. This does not followe the assigment exactly, but I beleive this is an enhancment rather than complication. Having the concerns separate is good practice this way repository only accesses data and does not check for any unexpected result or any other logic, this is handled by the service. This allows the controller focus only on handling the HTTP requests.
+
+### Changes Made
+1. **Introduced Repository Interface and Implementation**
+   - Added an interface `IProductRepository` to define the contract for data operations related to `Product`.
+   - Created a concrete implementation `ProductRepository` that uses Entity Framework Core to interact with the database.
+
+2. **Updated Dependency Injection Setup**
+   - Registered the `ProductRepository` in the dependency injection container in the `Program.cs` file.
+
+3. **Injected Repository into Service**
+   - Updated `ProductsService` to use `IProductRepository` instead of directly interacting with `DbContext`.
+
+4. **Refactored API Controller**
+   - Modified `ProductsController` to use `ProductsService` which now depends on `IProductRepository`.
+
+4. **Added API for discnounts**
+   - To further show the importance of having the additional service layer I've created this ednpoint which serves to update the products price based on discnount.
+   - POST /productCatalogApi/Products/discount/{id}/{percentage}
